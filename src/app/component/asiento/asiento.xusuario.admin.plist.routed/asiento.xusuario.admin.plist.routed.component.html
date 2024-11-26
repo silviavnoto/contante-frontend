@@ -3,13 +3,13 @@
     <div class="col text-center">
       <h2 class="my-2">
         <i class="bi bi-list"></i>
-        Lista de Usuarios
-        <i class="bi bi-person-circle"></i>
+        Lista de Asientos de {{ oUsuario?.nombre }} {{ oUsuario?.apellido1 }}
+        <i class="bi bi-journal-text"></i>
       </h2>
-      <a href="admin/usuario/create"
+      <a href="admin/asiento/create"
         ><button class="btn btn-primary my-2 mx-2">
           <i class="bi bi-plus-square"></i>
-          Crear nuevo usuario
+          Crear nuevo asiento
         </button></a
       >
 
@@ -109,80 +109,94 @@
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('nombre')" class="bg-primary text-white">
-                Nombre @if (strField === 'nombre') { @if (strDir === 'desc') {
-                <i class="bi bi-caret-down-fill"></i>
-                } @else {
-                <i class="bi bi-caret-up-fill"></i>} }
-              </th>
-              <th (click)="sort('apellido1')" class="bg-primary text-white">
-                Primer Apellido @if (strField === 'apellido1') { @if (strDir ===
+              <th (click)="sort('descripcion')" class="bg-primary text-white">
+                Descripcion @if (strField === 'descripcion') { @if (strDir ===
                 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('apellido2')" class="bg-primary text-white">
-                Segundo Apellido @if (strField === 'apellido2') { @if (strDir
+              <th (click)="sort('comentarios')" class="bg-primary text-white">
+                Comentarios @if (strField === 'comentarios') { @if (strDir ===
+                'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
+              </th>
+              <th (click)="sort('inventariable')" class="bg-primary text-white">
+                Inventariable @if (strField === 'inventariable') { @if (strDir
                 === 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('email')" class="bg-primary text-white">
-                Correo @if (strField === 'email') { @if (strDir === 'desc') {
+              <th (click)="sort('momentstamp')" class="bg-primary text-white">
+                Momentstamp @if (strField === 'momentstamp') { @if (strDir ===
+                'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th class="bg-primary text-white">Tipo de usuario</th>
-              <th class="bg-primary text-white">Asientos</th>
+              <th class="bg-primary text-white">Tipo de Asiento</th>
+              <th class="bg-primary text-white">Usuario</th>
+              <th class="bg-primary text-white">Periodo</th>
+              <th class="bg-primary text-white">Apuntes</th>
               <th class="bg-warning text-black">Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            @for (usuario of oPage?.content; track usuario.id) {
+            @for (asiento of oPage?.content; track asiento.id) {
             <tr>
-              <td class="text-center">{{ usuario.id }}</td>
-              <td class="text-start">{{ usuario.nombre | trim : 10 }}</td>
-              <td class="text-start">{{ usuario.apellido1 }}</td>
-              <td class="text-start">{{ usuario.apellido2 }}</td>
-              <td class="text-start" style="font-size: small">
-                {{ usuario.email }}
+              <td class="text-center">{{ asiento.id }}</td>
+              <td class="text-start">{{ asiento.descripcion | trim : 30 }}</td>
+              <td class="text-start">{{ asiento.comentarios | trim : 30 }}</td>
+              <td class="text-center">
+                @if (asiento.inventariable == 1) {
+                <i class="bi bi-check"></i>
+                } @else{
+                <i class="bi bi-x"></i>
+                }
               </td>
-              <td class="text-start">
-                {{ usuario.tipousuario.descripcion }} ({{
-                  usuario.tipousuario.id
+              <td class="text-center">
+                {{ asiento.momentstamp | date : "dd/MM/yyyy ..." }}
+              </td>
+              <td class="text-center">
+                {{ asiento.tipoasiento.descripcion }} ({{
+                  asiento.tipoasiento.id
                 }})
               </td>
               <td class="text-center">
-                <a
-                  href="admin/asiento/plist/xusuario/{{ usuario.id }}"
-                  class="btn btn-primary"
-                  >{{ usuario.asientos }}</a
-                >
+                {{ asiento.usuario.nombre }} {{ asiento.usuario.apellido1 }} ({{
+                  asiento.usuario.id
+                }})
+              </td>
+              <td class="text-center">
+                {{ asiento.periodo.anyo }} ({{ asiento.periodo.id }})
+              </td>
+              <td class="text-center">
+                {{ asiento.apuntes }} 
               </td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button
                     type="button"
                     class="btn btn-success"
-                    (click)="view(usuario)"
+                    (click)="view(asiento)"
                   >
                     <i class="bi bi-eye icon-15"></i>
                   </button>
                   <button
                     type="button"
                     class="btn btn-warning icon-15"
-                    (click)="edit(usuario)"
+                    (click)="edit(asiento)"
                   >
                     <i class="bi bi-pen"></i>
                   </button>
                   <button
                     type="button"
                     class="btn btn-danger icon-15"
-                    (click)="remove(usuario)"
+                    (click)="remove(asiento)"
                   >
                     <i class="bi bi-trash"></i>
                   </button>
@@ -191,7 +205,7 @@
             </tr>
             } @empty {
             <tr>
-              <td colspan="6">No hay usuarios</td>
+              <td colspan="6">No hay asientos</td>
             </tr>
             }
           </tbody>
