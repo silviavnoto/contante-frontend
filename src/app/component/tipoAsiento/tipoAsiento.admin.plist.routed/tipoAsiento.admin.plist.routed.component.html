@@ -117,6 +117,9 @@
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
+              <th  class="bg-primary text-white">
+                Balances
+              </th>
               <th class="bg-warning text-black">Acciones</th>
             </tr>
           </thead>
@@ -126,7 +129,7 @@
             <tr>
               <td class="text-center">{{ tipoAsiento.id }}</td>
               <td class="text-start">{{ tipoAsiento.descripcion | trim : 50 }}</td>
-              
+              <td> {{tipoAsiento.grupotipoasientos}}</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button

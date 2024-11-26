@@ -36,6 +36,23 @@
           </th>
           <td class="text-start ps-5">{{ oUsuario!.email }}</td>
         </tr>
+        <tr class="text-center">
+          <th scope="row" class="bg-primary text-white text-end pe-5">
+            Tipo de usuario
+          </th>
+          <td class="text-start ps-5">
+            {{ oUsuario!.tipousuario.descripcion }} ({{
+              oUsuario!.tipousuario.id
+            }})
+          </td>
+        </tr>
+
+        <tr class="text-center">
+          <th scope="row" class="bg-primary text-white text-end pe-5">
+            Asientos
+          </th>
+          <td class="text-start ps-5">{{ oUsuario!.asientos }}</td>
+        </tr>
       </tbody>
     </table>
   </div>

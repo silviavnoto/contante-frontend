@@ -2,7 +2,7 @@
   <div class="col-lg-7 col-md-10 col-sm-12">
     <h1 class="my-5 text-center">
       <i class="bi bi-card-list"></i>
-      Ver usuario
+      Detalle de usuario
       <i class="bi bi-person-circle"></i>
     </h1>
     <br />
@@ -40,7 +40,14 @@
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Tipo de usuario
           </th>
-          <td class="text-start ps-5">{{ oUsuario.tipousuario.descripcion }}</td>
+          <td class="text-start ps-5">{{ oUsuario.tipousuario.descripcion }} ({{ oUsuario.tipousuario.id }})</td>
+        </tr>
+
+        <tr class="text-center">
+          <th scope="row" class="bg-primary text-white text-end pe-5">
+            Asientos
+          </th>
+          <td class="text-start ps-5">{{ oUsuario.asientos }}</td>
         </tr>
 
       </tbody>

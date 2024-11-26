@@ -160,14 +160,14 @@
             @for (apunte of oPage?.content; track apunte.id) {
             <tr>
               <td class="text-center">{{ apunte.id }}</td>
-              <td class="text-start">{{ apunte.debe }}</td>
-              <td class="text-start">{{ apunte.haber }}</td>
+              <td class="text-end">{{ apunte.debe }}</td>
+              <td class="text-end">{{ apunte.haber }}</td>
               <td class="text-start">{{ apunte.descripcion | trim : 10 }}</td>
               <td class="text-start">{{ apunte.comentarios | trim : 10 }}</td>
               <td class="text-start">
                 {{ apunte.momentstamp | date : "dd/MM/yyyy ..." }}
               </td>
-              <td class="text-start">{{ apunte.orden }}</td>
+              <td class="text-center">{{ apunte.orden }}</td>
               <td class="text-start">
                 {{ apunte.asiento.descripcion | trim :10 }}({{ apunte.asiento.id }})
               </td>

@@ -55,23 +55,23 @@
 
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">
-            Id Asiento
+            Asiento
           </th>
-          <td class="text-start ps-5">{{ oApunte!.id_asiento }}</td>
+          <td class="text-start ps-5">{{ oApunte!.asiento.descripcion }} ({{oApunte!.asiento.id}})</td>
         </tr>
 
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Id Subcuenta
           </th>
-          <td class="text-start ps-5">{{ oApunte!.id_subcuenta }}</td>
+          <td class="text-start ps-5">{{ oApunte!.subcuenta.descripcion }} ({{oApunte!.subcuenta.id}})</td>
         </tr>
 
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Id Tipo Apunte
           </th>
-          <td class="text-start ps-5">{{ oApunte!.id_tipoapunte}}</td>
+          <td class="text-start ps-5">{{ oApunte!.tipoapunte.descripcion }} ({{oApunte!.tipoapunte.id}})</td>
       </tbody>
     </table>
   </div>

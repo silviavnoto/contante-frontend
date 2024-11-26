@@ -110,13 +110,18 @@
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
               <th (click)="sort('descripcion')" class="bg-primary text-white">
-                Descripcion @if (strField === 'descripcion') { @if (strDir === 'desc') {
+                Descripcion @if (strField === 'descripcion') { @if (strDir ===
+                'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('creditoOdebito')" class="bg-primary text-white">
-                Crédito o débito @if (strField === 'creditoOdebito') { @if (strDir === 'desc') {
+              <th
+                (click)="sort('creditoOdebito')"
+                class="bg-primary text-white"
+              >
+                Crédito o débito @if (strField === 'creditoOdebito') { @if
+                (strDir === 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
@@ -129,8 +134,8 @@
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
               <th (click)="sort('realOnominal')" class="bg-primary text-white">
-                Real o nominal @if (strField === 'realOnominal') { @if (strDir ===
-                'desc') {
+                Real o nominal @if (strField === 'realOnominal') { @if (strDir
+                === 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
@@ -145,10 +150,26 @@
             @for (tipoCuenta of oPage?.content; track tipoCuenta.id) {
             <tr>
               <td class="text-center">{{ tipoCuenta.id }}</td>
-              <td class="text-start">{{ tipoCuenta.descripcion | trim : 10 }}</td>
-              <td class="text-start">{{ tipoCuenta.creditoOdebito }}</td>
-              <td class="text-start">{{ tipoCuenta.comentarios | trim : 10 }}</td>
-              <td class="text-start">{{ tipoCuenta.realOnominal }}</td>
+              <td class="text-start">
+                {{ tipoCuenta.descripcion | trim : 10 }}
+              </td>
+              <td class="text-center">                
+                @if(tipoCuenta.creditoOdebito === 0){
+                <span class="badge text-bg-danger">CREDITO</span>
+                } @else {
+                <span class="badge text-bg-success">DEBITO</span>
+                }
+              </td>
+              <td class="text-start">
+                {{ tipoCuenta.comentarios | trim : 10 }}
+              </td>
+              <td class="text-center">
+                @if(tipoCuenta.realOnominal === 0){
+                <span class="badge text-bg-warning">REAL</span>
+                } @else {
+                <span class="badge text-bg-info">NOMINAL</span>
+                }
+              </td>
               <td class="text-center">{{ tipoCuenta.cuentas }}</td>
               <td class="text-center">{{ tipoCuenta.grupotipocuentas }}</td>
               <td>

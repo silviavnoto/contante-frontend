@@ -12,11 +12,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 .icon-20 { font-size: 20px; }
 .icon-50 { font-size: 50px; }
 
-.table tr th  { padding: 0.3rem; }
-.table tr td { padding: 0.1rem; align-content: center;}
+.table tr th  { padding: 0.5rem 0.3rem; }
+.table tr td { padding: 0 0.5rem; align-content: center;}
 
 
 .navbar-nav .nav-link.active {
     color: #fff !important;
     background-color: #007bff;
 }
+
