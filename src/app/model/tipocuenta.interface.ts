@@ -1,9 +1,9 @@
 export interface ITipocuenta {
   id: number;
   descripcion: string;
-  creditoOdebito: number;
+  creditoodebito: number;
   comentarios: string;
-  realOnominal: number;
+  realonominal: number;
   cuentas: number;
   grupotipocuentas: number;
 }

@@ -4,21 +4,23 @@ import { IPage } from '../../../model/model.interface';
 import { FormsModule } from '@angular/forms';
 import { BotoneraService } from '../../../service/botonera.service';
 import { debounceTime, Subject } from 'rxjs';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { TrimPipe } from '../../../pipe/trim.pipe';
-import { ITipocuenta } from '../../../model/tipocuenta.interface';
-import { TipoCuentaService } from '../../../service/tipoCuenta.service';
+import { IApunte } from '../../../model/apunte.interface';
+import { ApunteService } from '../../../service/apunte.service';
+import { TipoApunteService } from '../../../service/tipoapunte.service';
+import { ITipoapunte } from '../../../model/tipoapunte.interface';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
-  selector: 'app-tipoCuenta.admin.routed',
-  templateUrl: './tipoCuenta.admin.plist.routed.component.html',
-  styleUrls: ['./tipoCuenta.admin.plist.routed.component.css'],
+  selector: 'app-apunte.admin.routed',
+  templateUrl: './apunte.xtipoapunte.admin.plist.routed.component.html',
+  styleUrls: ['./apunte.xtipoapunte.admin.plist.routed.component.css'],
   standalone: true,
   imports: [CommonModule, FormsModule, TrimPipe, RouterModule],
 })
-
-export class TipoCuentaAdminPlistRoutedComponent implements OnInit {
-  oPage: IPage<ITipocuenta> | null = null;
+export class ApunteXTipoapunteAdminPlistRoutedComponent implements OnInit {
+  oPage: IPage<IApunte> | null = null;
   //
   nPage: number = 0; // 0-based server count
   nRpp: number = 10;
@@ -30,33 +32,47 @@ export class TipoCuentaAdminPlistRoutedComponent implements OnInit {
   //
   arrBotonera: string[] = [];
   //
+  oTipoapunte: ITipoapunte = {} as ITipoapunte;
   private debounceSubject = new Subject<string>();
 
   constructor(
-    private oTipoCuentaService: TipoCuentaService,
+    private oApunteService: ApunteService,
     private oBotoneraService: BotoneraService,
-    private oRouter: Router
+    private oRouter: Router,
+    private oActivatedRoute: ActivatedRoute,
+    private oTipoapunteService: TipoApunteService
   ) {
     this.debounceSubject.pipe(debounceTime(10)).subscribe((value) => {
       this.getPage();
     });
+    this.oActivatedRoute.params.subscribe((params) => {
+      this.oTipoapunteService.get(params['id']).subscribe({
+        next: (oTipoapunte: ITipoapunte) => {
+          this.oTipoapunte = oTipoapunte;
+          this.getPage();
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err);
+        },
+      });
+    })
   }
 
   ngOnInit() {
-    this.getPage();
   }
 
   getPage() {
-    this.oTipoCuentaService
-      .getPage(
+    this.oApunteService
+      .getPageXTipoApunte(
         this.nPage,
         this.nRpp,
         this.strField,
         this.strDir,
-        this.strFiltro
+        this.strFiltro,
+        this.oTipoapunte.id
       )
       .subscribe({
-        next: (oPageFromServer: IPage<ITipocuenta>) => {
+        next: (oPageFromServer: IPage<IApunte>) => {
           this.oPage = oPageFromServer;
           this.arrBotonera = this.oBotoneraService.getBotonera(
             this.nPage,
@@ -69,18 +85,18 @@ export class TipoCuentaAdminPlistRoutedComponent implements OnInit {
       });
   }
 
-  edit(oTipoCuenta: ITipocuenta) {
+  edit(oApunte: IApunte) {
     //navegar a la página de edición
-    this.oRouter.navigate(['admin/tipoCuenta/edit', oTipoCuenta.id]);
+    this.oRouter.navigate(['admin/apunte/edit', oApunte.id]);
   }
 
-  view(oTipoCuenta: ITipocuenta) {
+  view(oApunte: IApunte) {
     //navegar a la página de edición
-    this.oRouter.navigate(['admin/tipoCuenta/view', oTipoCuenta.id]);
+    this.oRouter.navigate(['admin/apunte/view', oApunte.id]);
   }
 
-  remove(oTipoCuenta: ITipocuenta) {
-    this.oRouter.navigate(['admin/tipoCuenta/delete/', oTipoCuenta.id]);
+  remove(oApunte: IApunte) {
+    this.oRouter.navigate(['admin/apunte/delete/', oApunte.id]);
   }
 
   goToPage(p: number) {

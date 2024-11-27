@@ -6,21 +6,14 @@
         Listado de Tipo de Apuntes
         <i class="bi bi-file-text"></i>
       </h2>
-      <a href="admin/tipoapunte/create"
-        ><button class="btn btn-primary my-2 mx-2">
+      <a href="admin/tipoapunte/create"><button class="btn btn-primary my-2 mx-2">
           <i class="bi bi-plus-square"></i>
           Crear nuevo tipo de apunte
-        </button></a
-      >
+        </button>
+      </a>
 
       <div class="d-inline-flex mx-2">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Buscar"
-          (keyup)="filter($event)"
-          [(ngModel)]="strFiltro"
-        />
+        <input type="text" class="form-control" placeholder="Buscar" (keyup)="filter($event)" [(ngModel)]="strFiltro" />
       </div>
 
       <div class="d-inline-flex mx-2">
@@ -42,12 +35,7 @@
       <nav class="my-2">
         <ul class="pagination justify-content-center">
           <li class="page-item">
-            <a
-              class="page-link"
-              [class.disabled]="nPage - -1 === 1"
-              (click)="goToPrev()"
-              href="#"
-            >
+            <a class="page-link" [class.disabled]="nPage - -1 === 1" (click)="goToPrev()" href="#">
               Anterior
               <i class="bi bi-caret-left-square-fill"></i>
             </a>
@@ -57,27 +45,16 @@
             @if(pag==='...'){
             <a class="page-link">{{ pag }}</a>
             } @else {
-            <a
-              class="page-link"
-              href="#"
-              (click)="goToPage(-(-pag))"
-              [class.active]="nPage - -1 === -(-pag)"
-            >
+            <a class="page-link" href="#" (click)="goToPage(-(-pag))" [class.active]="nPage - -1 === -(-pag)">
               {{ pag }}
             </a>
             }
           </li>
 
           <li class="page-item">
-            <a
-              class="page-link"
-              [class.disabled]="nPage - -1 === oPage?.totalPages"
-              (click)="goToNext()"
-              href="#"
-            >
+            <a class="page-link" [class.disabled]="nPage - -1 === oPage?.totalPages" (click)="goToNext()" href="#">
               <i class="bi bi-caret-right-square-fill"></i>
-              Siguiente</a
-            >
+              Siguiente</a>
           </li>
         </ul>
       </nav>
@@ -97,10 +74,8 @@
       </div>
 
       <div class="d-flex flex-column">
-        <table
-          class="table table-striped table-bordered my-2"
-          style="table-layout: fixed; width: 100%; word-break: break-all"
-        >
+        <table class="table table-striped table-bordered my-2"
+          style="table-layout: fixed; width: 100%; word-break: break-all">
           <thead>
             <tr>
               <th (click)="sort('id')" class="bg-danger text-white">
@@ -125,7 +100,7 @@
               </th>
 
               <th class="bg-primary text-white">Apuntes</th>
-              <th class="bg-primary text-white">Grupo Tipo Apuntes</th>
+              <th class="bg-primary text-white">Balances</th>
               <th class="bg-warning text-black">Acciones</th>
             </tr>
           </thead>
@@ -134,32 +109,27 @@
             @for (tipoapunte of oPage?.content; track tipoapunte.id) {
             <tr>
               <td class="text-center">{{ tipoapunte.id }}</td>
-              <td class="text-start">{{ tipoapunte.descripcion | trim : 10 }}</td>
-              <td class="text-start">{{ tipoapunte.comentarios | trim : 10 }}</td>
-              <td class="text-center">{{ tipoapunte.apuntes }}</td>
+              <td class="text-start">
+                {{ tipoapunte.descripcion | trim : 10 }}
+              </td>
+              <td class="text-start">
+                {{ tipoapunte.comentarios | trim : 10 }}
+              </td>
+              <td class="text-center">
+                <a href="admin/apunte/plist/xtipoapunte/{{ tipoapunte.id }}" class="btn btn-primary">{{
+                  tipoapunte.apuntes }}</a>
+              </td>
               <td class="text-center">{{ tipoapunte.grupotipoapuntes }}</td>
 
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button
-                    type="button"
-                    class="btn btn-success"
-                    (click)="view(tipoapunte)"
-                  >
+                  <button type="button" class="btn btn-success" (click)="view(tipoapunte)">
                     <i class="bi bi-eye icon-15"></i>
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-warning icon-15"
-                    (click)="edit(tipoapunte)"
-                  >
+                  <button type="button" class="btn btn-warning icon-15" (click)="edit(tipoapunte)">
                     <i class="bi bi-pen"></i>
                   </button>
-                  <button
-                    type="button"
-                    class="btn btn-danger icon-15"
-                    (click)="remove(tipoapunte)"
-                  >
+                  <button type="button" class="btn btn-danger icon-15" (click)="remove(tipoapunte)">
                     <i class="bi bi-trash"></i>
                   </button>
                 </div>
@@ -176,4 +146,3 @@
     </div>
   </div>
 </div>
-

@@ -3,16 +3,24 @@
     <div class="col text-center">
       <h2 class="my-2">
         <i class="bi bi-list"></i>
-        Lista de Tipos de Asientos
-        <i class="bi bi-clipboard2-pulse"></i>
+        Lista de Cuentas de {{ oTipocuenta.descripcion }}
+        <i class="bi bi-person-vcard-fill"></i>
       </h2>
-      <a href="admin/tipoAsiento/create"><button class="btn btn-primary my-2 mx-2">
+      <a href="admin/cuenta/create"
+        ><button class="btn btn-primary my-2 mx-2">
           <i class="bi bi-plus-square"></i>
-          Crear Tipo de Asiento
-        </button></a>
+          Crear nueva cuenta
+        </button></a
+      >
 
       <div class="d-inline-flex mx-2">
-        <input type="text" class="form-control" placeholder="Buscar" (keyup)="filter($event)" [(ngModel)]="strFiltro" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Buscar"
+          (keyup)="filter($event)"
+          [(ngModel)]="strFiltro"
+        />
       </div>
 
       <div class="d-inline-flex mx-2">
@@ -34,8 +42,12 @@
       <nav class="my-2">
         <ul class="pagination justify-content-center">
           <li class="page-item">
-            <a class="page-link" [class.disabled]="nPage - -1 === 1" (click)="goToPrev()" href="#">
-
+            <a
+              class="page-link"
+              [class.disabled]="nPage - -1 === 1"
+              (click)="goToPrev()"
+              href="#"
+            >
               Anterior
               <i class="bi bi-caret-left-square-fill"></i>
             </a>
@@ -45,16 +57,27 @@
             @if(pag==='...'){
             <a class="page-link">{{ pag }}</a>
             } @else {
-            <a class="page-link" href="#" (click)="goToPage(-(-pag))" [class.active]="nPage - -1 === -(-pag)">
+            <a
+              class="page-link"
+              href="#"
+              (click)="goToPage(-(-pag))"
+              [class.active]="nPage - -1 === -(-pag)"
+            >
               {{ pag }}
             </a>
             }
           </li>
 
           <li class="page-item">
-            <a class="page-link" [class.disabled]="nPage - -1 === oPage?.totalPages" (click)="goToNext()" href="#">
+            <a
+              class="page-link"
+              [class.disabled]="nPage - -1 === oPage?.totalPages"
+              (click)="goToNext()"
+              href="#"
+            >
               <i class="bi bi-caret-right-square-fill"></i>
-              Siguiente</a>
+              Siguiente</a
+            >
           </li>
         </ul>
       </nav>
@@ -74,8 +97,10 @@
       </div>
 
       <div class="d-flex flex-column">
-        <table class="table table-striped table-bordered my-2"
-          style="table-layout: fixed; width: 100%; word-break: break-all">
+        <table
+          class="table table-striped table-bordered my-2"
+          style="table-layout: fixed; width: 100%; word-break: break-all"
+        >
           <thead>
             <tr>
               <th (click)="sort('id')" class="bg-danger text-white">
@@ -84,42 +109,58 @@
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('descripcion')" class="bg-primary text-white">
-                Descripción @if (strField === 'descripcion') { @if (strDir === 'desc') {
+              <th (click)="sort('codigo')" class="bg-primary text-white">
+                Codigo @if (strField === 'codigo') { @if (strDir === 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th class="bg-primary text-white">
-                Balances
+              <th (click)="sort('descripcion')" class="bg-primary text-white">
+                Descripcion @if (strField === 'descripcion') { @if (strDir ===
+                'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th class="bg-primary text-white">
-                Asientos
-              </th>
+              <th class="bg-primary text-white">Tipo de cuenta</th>
+              <th class="bg-primary text-white">Subcuentas</th>
+              <th class="bg-primary text-white">Balances</th>
               <th class="bg-warning text-black">Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            @for (tipoAsiento of oPage?.content; track tipoAsiento.id) {
+            @for (cuenta of oPage?.content; track cuenta.id) {
             <tr>
-              <td class="text-center">{{ tipoAsiento.id }}</td>
-              <td class="text-start">{{ tipoAsiento.descripcion | trim : 50 }}</td>
-              <td> {{tipoAsiento.grupotipoasientos}}</td>
-              <td>
-                <a href="admin/asiento/plist/xtipoasiento/{{tipoAsiento.id}}"
-                  class="btn btn-primary">{{tipoAsiento.asientos}}</a>
-
+              <td class="text-center">{{ cuenta.id }}</td>
+              <td class="text-center">{{ cuenta.codigo | trim : 10 }}</td>
+              <td class="text-center">{{ cuenta.descripcion }}</td>
+              <td class="text-start">
+                {{ cuenta.tipocuenta.descripcion }} ({{ cuenta.tipocuenta.id }})
               </td>
+              <td class="text-center">{{ cuenta.subcuentas }}</td>
+              <td class="text-center">{{ cuenta.grupocuentas }}</td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-success" (click)="view(tipoAsiento)">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="view(cuenta)"
+                  >
                     <i class="bi bi-eye icon-15"></i>
                   </button>
-                  <button type="button" class="btn btn-warning icon-15" (click)="edit(tipoAsiento)">
+                  <button
+                    type="button"
+                    class="btn btn-warning icon-15"
+                    (click)="edit(cuenta)"
+                  >
                     <i class="bi bi-pen"></i>
                   </button>
-                  <button type="button" class="btn btn-danger icon-15" (click)="remove(tipoAsiento)">
+                  <button
+                    type="button"
+                    class="btn btn-danger icon-15"
+                    (click)="remove(cuenta)"
+                  >
                     <i class="bi bi-trash"></i>
                   </button>
                 </div>
@@ -127,7 +168,7 @@
             </tr>
             } @empty {
             <tr>
-              <td colspan="3">No hay tipos de Asientos</td>
+              <td colspan="5">No hay cuentas</td>
             </tr>
             }
           </tbody>

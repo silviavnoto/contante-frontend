@@ -175,7 +175,11 @@
                 {{ asiento.periodo.anyo }} ({{ asiento.periodo.id }})
               </td>
               <td class="text-center">
-                {{ asiento.apuntes }} 
+                <a
+                  href="admin/apunte/plist/xasiento/{{ asiento.id }}"
+                  class="btn btn-primary">
+                  {{ asiento.apuntes }} 
+                </a>
               </td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">

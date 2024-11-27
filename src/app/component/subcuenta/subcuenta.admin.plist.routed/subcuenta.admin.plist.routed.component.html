@@ -157,7 +157,13 @@
               <td class="text-start">
                 {{ subcuenta.momentstamp | date : "dd/MM/yyyy ..." }}
               </td>
-              <td class="text-center">{{ subcuenta.apuntes }}</td>
+              <td class="text-center">
+                <a
+                  href="admin/apunte/plist/xsubcuenta/{{ subcuenta.id }}"
+                  class="btn btn-primary"
+                  >{{ subcuenta.apuntes }}</a
+                >
+              </td>
               <td class="text-center">{{ subcuenta.gruposubcuentas }}</td>
 
               <td>

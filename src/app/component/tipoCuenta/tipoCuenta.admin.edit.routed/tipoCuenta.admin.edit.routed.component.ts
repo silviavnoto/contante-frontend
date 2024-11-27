@@ -91,9 +91,9 @@ export class TipoCuentaAdminEditRoutedComponent implements OnInit {
   updateForm() {
     this.oTipoCuentaForm?.controls['id'].setValue(this.oTipoCuenta?.id);
     this.oTipoCuentaForm?.controls['descripcion'].setValue(this.oTipoCuenta?.descripcion);
-    this.oTipoCuentaForm?.controls['creditoOdebito'].setValue(this.oTipoCuenta?.creditoOdebito);
+    this.oTipoCuentaForm?.controls['creditoodebito'].setValue(this.oTipoCuenta?.creditoodebito);
     this.oTipoCuentaForm?.controls['comentarios'].setValue(this.oTipoCuenta?.comentarios);
-    this.oTipoCuentaForm?.controls['realOnominal'].setValue(this.oTipoCuenta?.realOnominal);
+    this.oTipoCuentaForm?.controls['realonominal'].setValue(this.oTipoCuenta?.realonominal);
   }
 
   get() {

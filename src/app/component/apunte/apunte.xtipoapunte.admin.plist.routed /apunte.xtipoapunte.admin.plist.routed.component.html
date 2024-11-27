@@ -3,13 +3,13 @@
     <div class="col text-center">
       <h2 class="my-2">
         <i class="bi bi-list"></i>
-        Lista de Cuentas
-        <i class="bi bi-person-vcard-fill"></i>
+        Lista de Apuntes
+        <i class="bi bi-newspaper"></i>
       </h2>
-      <a href="admin/cuenta/create"
+      <a href="admin/apunte/create"
         ><button class="btn btn-primary my-2 mx-2">
           <i class="bi bi-plus-square"></i>
-          Crear nueva cuenta
+          Crear nuevo apunte
         </button></a
       >
 
@@ -109,57 +109,94 @@
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th (click)="sort('codigo')" class="bg-primary text-white">
-                Codigo @if (strField === 'codigo') { @if (strDir === 'desc') {
+              <th (click)="sort('debe')" class="bg-primary text-white">
+                Debe @if (strField === 'debe') { @if (strDir === 'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
+              </th>
+              <th (click)="sort('haber')" class="bg-primary text-white">
+                Haber @if (strField === 'haber') { @if (strDir === 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
               <th (click)="sort('descripcion')" class="bg-primary text-white">
-                Descripcion @if (strField === 'descripcion') { @if (strDir ===
+                Descripción @if (strField === 'descripcion') { @if (strDir ===
                 'desc') {
                 <i class="bi bi-caret-down-fill"></i>
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th class="bg-primary text-white">Tipo de cuenta</th>
-              <th class="bg-primary text-white">Subcuentas</th>
-              <th class="bg-primary text-white">Balances</th>
+              <th (click)="sort('comentarios')" class="bg-primary text-white">
+                Comentarios @if (strField === 'comentarios') { @if (strDir ===
+                'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
+              </th>
+              <th (click)="sort('momentstamp')" class="bg-primary text-white">
+                Momentstamp @if (strField === 'momentstamp') { @if (strDir ===
+                'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
+              </th>
+              <th (click)="sort('orden')" class="bg-primary text-white">
+                Orden @if (strField === 'orden') { @if (strDir === 'desc') {
+                <i class="bi bi-caret-down-fill"></i>
+                } @else {
+                <i class="bi bi-caret-up-fill"></i>} }
+              </th>
+              <th class="bg-primary text-white">Asiento</th>
+              <th class="bg-primary text-white">Subcuenta</th>
+              <th class="bg-primary text-white">Tipo de Apunte</th>
+
               <th class="bg-warning text-black">Acciones</th>
             </tr>
           </thead>
 
           <tbody>
-            @for (cuenta of oPage?.content; track cuenta.id) {
+            @for (apunte of oPage?.content; track apunte.id) {
             <tr>
-              <td class="text-center">{{ cuenta.id }}</td>
-              <td class="text-center">{{ cuenta.codigo | trim : 10 }}</td>
-              <td class="text-center">{{ cuenta.descripcion }}</td>
-              <td class="text-center">
-                {{ cuenta.tipocuenta.descripcion }} ({{ cuenta.tipocuenta.id }})
+              <td class="text-center">{{ apunte.id }}</td>
+              <td class="text-end">{{ apunte.debe }}</td>
+              <td class="text-end">{{ apunte.haber }}</td>
+              <td class="text-start">{{ apunte.descripcion | trim : 10 }}</td>
+              <td class="text-start">{{ apunte.comentarios | trim : 10 }}</td>
+              <td class="text-start">
+                {{ apunte.momentstamp | date : "dd/MM/yyyy ..." }}
               </td>
-              <td class="text-center">{{ cuenta.subcuentas }}</td>
-              <td class="text-center">{{ cuenta.grupocuentas }}</td>
+              <td class="text-center">{{ apunte.orden }}</td>
+              <td class="text-start">
+                {{ apunte.asiento.descripcion | trim :10 }}({{ apunte.asiento.id }})
+              </td>
+              <td class="text-start">
+                {{ apunte.subcuenta.descripcion | trim :10 }}({{ apunte.subcuenta.id }})
+              </td>
+              <td class="text-start">
+                {{ apunte.tipoapunte.descripcion }}({{ apunte.tipoapunte.id }})
+              </td>
               <td>
                 <div class="btn-group" role="group" aria-label="Basic example">
                   <button
                     type="button"
                     class="btn btn-success"
-                    (click)="view(cuenta)"
+                    (click)="view(apunte)"
                   >
                     <i class="bi bi-eye icon-15"></i>
                   </button>
                   <button
                     type="button"
                     class="btn btn-warning icon-15"
-                    (click)="edit(cuenta)"
+                    (click)="edit(apunte)"
                   >
                     <i class="bi bi-pen"></i>
                   </button>
                   <button
                     type="button"
                     class="btn btn-danger icon-15"
-                    (click)="remove(cuenta)"
+                    (click)="remove(apunte)"
                   >
                     <i class="bi bi-trash"></i>
                   </button>
@@ -168,7 +205,7 @@
             </tr>
             } @empty {
             <tr>
-              <td colspan="5">No hay cuentas</td>
+              <td colspan="11">No hay apuntes</td>
             </tr>
             }
           </tbody>

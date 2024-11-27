@@ -44,6 +44,38 @@ export class CuentaService {
     return this.oHttp.get<IPage<ICuenta>>(URL, httpOptions);
   }
 
+  getPageXTipoCuenta(
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_tipo_cuenta: number
+  ): Observable<IPage<ICuenta>> {
+    let URL: string = '';
+    URL += this.serverURL + '/xtipocuenta/' + id_tipo_cuenta;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<ICuenta>>(URL, httpOptions);
+  }
+
   get(id: number): Observable<ICuenta> {
     let URL: string = '';
     URL += this.serverURL;

@@ -1,112 +1,58 @@
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Contante</a>
-    <button
-      class="navbar-toggler"
-      type="button"
-      data-bs-toggle="collapse"
-      data-bs-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="
+          <a class="nav-link" [class.active]="
               strRuta == '/home' || strRuta == '/' || strRuta == ''
-            "
-            aria-current="page"
-            href="/home"
-            >Inicio</a
-          >
+            " aria-current="page" href="/home">Inicio</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/usuario/plist'"
-            href="/admin/usuario/plist"
-            >Usuarios</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/usuario/plist'"
+            href="/admin/usuario/plist">Usuarios</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/apunte/plist'"
-            href="/admin/apunte/plist"
-            >Apuntes</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/periodo/plist'"
+            href="/admin/periodo/plist">Periodos</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/cuenta/plist'"
-            href="/admin/cuenta/plist"
-            >Cuenta</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/subcuenta/plist'"
-            href="/admin/subcuenta/plist"
-            >Subcuenta</a
-          >
-        </li>
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/asiento/plist'"
-            href="/admin/asiento/plist"
-            >Asientos
-        </a>
-        </li>
-        <li class="nav-item">
-          <a
-            class ="nav-link"
-            [class.active]="strRuta == '/admin/tipoAsiento/plist'"
-            href="admin/tipoAsiento/plist"
-            >Tipo Asiento
+          <a class="nav-link" [class.active]="strRuta == '/admin/asiento/plist'" href="/admin/asiento/plist">Asientos
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/tipoapunte/plist'"
-            href="/admin/tipoapunte/plist"
-            >Tipos de Apunte</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/apunte/plist'" href="/admin/apunte/plist">Apuntes</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/balance/plist'"
-            href="/admin/balance/plist"
-            >Balance</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/subcuenta/plist'"
+            href="/admin/subcuenta/plist">Subcuentas</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/periodo/plist'"
-            href="/admin/periodo/plist"
-            >Periodo</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/cuenta/plist'" href="/admin/cuenta/plist">Cuentas</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="strRuta == '/admin/balance/plist'" href="/admin/balance/plist">Balances</a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [class.active]="strRuta == '/admin/tipoCuenta/plist'"
-            href="/admin/tipoCuenta/plist"
-            >TipoCuenta</a
-          >
+          <a class="nav-link" [class.active]="strRuta == '/admin/tipoCuenta/plist'"
+            href="/admin/tipoCuenta/plist">TipoCuenta</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="strRuta == '/admin/tipoAsiento/plist'" href="admin/tipoAsiento/plist">Tipo
+            Asiento
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" [class.active]="strRuta == '/admin/tipoapunte/plist'" href="/admin/tipoapunte/plist">Tipos
+            de Apunte</a>
         </li>
       </ul>
-      
+
     </div>
   </div>
 </nav>

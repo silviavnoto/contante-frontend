@@ -6,11 +6,10 @@ import { IPage } from '../model/model.interface';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApunteService {
-
-serverURL: string = serverURL + '/apunte';
+  serverURL: string = serverURL + '/apunte';
 
   constructor(private oHttp: HttpClient) {}
 
@@ -23,6 +22,103 @@ serverURL: string = serverURL + '/apunte';
   ): Observable<IPage<IApunte>> {
     let URL: string = '';
     URL += this.serverURL;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<IApunte>>(URL, httpOptions);
+  }
+
+  getPageXSubcuenta(
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_subcuenta: number
+  ): Observable<IPage<IApunte>> {
+    let URL: string = '';
+    URL += this.serverURL + '/xsubcuenta/' + id_subcuenta;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<IApunte>>(URL, httpOptions);
+  }
+
+  getPageXAsiento(  
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_asiento: number
+  ): Observable<IPage<IApunte>> {
+  
+    let URL: string = '';
+    URL += this.serverURL + '/xasiento/' + id_asiento;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<IApunte>>(URL, httpOptions);
+  }
+
+  getPageXTipoApunte(
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_tipoapunte: number
+  ): Observable<IPage<IApunte>> {
+    let URL: string = '';
+    URL += this.serverURL + '/xtipoapunte/' + id_tipoapunte;
     if (!page) {
       page = 0;
     }

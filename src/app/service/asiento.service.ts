@@ -76,6 +76,71 @@ export class AsientoService {
     return this.oHttp.get<IPage<IAsiento>>(URL, httpOptions);
   }
 
+  getPageXTipoAsiento(
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_tipoasiento: number
+  ): Observable<IPage<IAsiento>> {
+    let URL: string = '';
+    URL += this.serverURL + '/xtipoasiento/' + id_tipoasiento;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<IAsiento>>(URL, httpOptions);
+  }
+
+  getPageXPeriodo(
+    page: number,
+    size: number,
+    field: string,
+    dir: string,
+    filtro: string,
+    id_tipoasiento: number
+  ): Observable<IPage<IAsiento>> {
+    let URL: string = '';
+    URL += this.serverURL + '/xperiodo/' + id_tipoasiento;
+    if (!page) {
+      page = 0;
+    }
+    URL += '?page=' + page;
+    if (!size) {
+      size = 10;
+    }
+    URL += '&size=' + size;
+    if (field) {
+      URL += '&sort=' + field;
+      if (dir === 'asc') {
+        URL += ',asc';
+      } else {
+        URL += ',desc';
+      }
+    }
+    if (filtro) {
+      URL += '&filter=' + filtro;
+    }
+    return this.oHttp.get<IPage<IAsiento>>(URL, httpOptions);
+  }
+
+
   get(id: number): Observable<IAsiento> {
     let URL: string = '';
     URL += this.serverURL;
