@@ -60,7 +60,11 @@
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Periodo 	
           </th>
-          <td class="text-start ps-5">{{ oAsiento!.periodo.anyo }} ({{oAsiento!.periodo.id}})</td>
+          <td class="text-start ps-5">
+            <a [routerLink]="['/admin/periodo/view', oAsiento.periodo.id]">
+              {{ oAsiento.periodo.descripcion}}({{oAsiento!.periodo.id}})
+            </a>
+          </td>
         </tr>
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">

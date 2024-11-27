@@ -23,15 +23,17 @@
           <td class="text-start ps-5">{{ oSubcuenta.descripcion }}</td>
         </tr>
         <tr class="text-center">
-          <th scope="row" class="bg-primary text-white text-end pe-5">id_cuenta</th>
-          <td class="text-start ps-5">{{ oSubcuenta.cuenta.id }}</td>
+          <th scope="row" class="bg-primary text-white text-end pe-5">Cuenta</th>
+          <td class="text-start ps-5">
+            {{ oSubcuenta.cuenta.descripcion }} ({{ oSubcuenta.cuenta.id }})
+          </td>
         </tr>
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Momentstamp
           </th>
           <td class="text-start ps-5">{{ oSubcuenta.momentstamp | date:'dd/MM/yyyy HH:mm:ss' }}</td>
-        </tr>        
+        </tr>
       </tbody>
     </table>
   </div>
@@ -41,17 +43,11 @@
       <i class="bi bi-list"></i>
       Ir a listado de Subcuentas
     </a>
-    <a
-      class="btn btn-primary mt-4 mx-1"
-      href="admin/subcuenta/edit/{{ oSubcuenta.id }}"
-    >
+    <a class="btn btn-primary mt-4 mx-1" href="admin/subcuenta/edit/{{ oSubcuenta.id }}">
       <i class="bi bi-pencil"></i>
       Editar
     </a>
-    <a
-      class="btn btn-danger mt-4 mx-1"
-      href="admin/subcuenta/delete/{{ oSubcuenta.id }}"
-    >
+    <a class="btn btn-danger mt-4 mx-1" href="admin/subcuenta/delete/{{ oSubcuenta.id }}">
       <i class="bi bi-trash"></i>
       Borrar
     </a>

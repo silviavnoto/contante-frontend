@@ -1,16 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { AsientoService } from '../../../service/asiento.service';
 import { IAsiento } from '../../../model/asiento.interface';
 import { CommonModule } from '@angular/common';
+import { TrimPipe } from "../../../pipe/trim.pipe";
 
 
 @Component({
   selector: 'app-asiento.admin.view.routed',
   standalone: true,
   imports: [
-    CommonModule
-  ],
+    CommonModule,
+    TrimPipe,
+    RouterModule
+],
   templateUrl: './asiento.admin.view.routed.component.html',
   styleUrls: ['./asiento.admin.view.routed.component.css']
 })

@@ -40,14 +40,20 @@
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Tipo de usuario
           </th>
-          <td class="text-start ps-5">{{ oUsuario.tipousuario.descripcion }} ({{ oUsuario.tipousuario.id }})</td>
+          <td class="text-start ps-5">          
+            {{ oUsuario.tipousuario.descripcion }} ({{ oUsuario.tipousuario.id }})
+          </td>
         </tr>
 
         <tr class="text-center">
           <th scope="row" class="bg-primary text-white text-end pe-5">
             Asientos
           </th>
-          <td class="text-start ps-5">{{ oUsuario.asientos }}</td>
+          <td class="text-start ps-5">
+            <a href="admin/asiento/plist/xusuario/{{ oUsuario.id }}" class="btn btn-primary">
+              {{ oUsuario.asientos }}
+            </a>
+          </td>
         </tr>
 
       </tbody>
@@ -59,17 +65,11 @@
       <i class="bi bi-list"></i>
       Ir a listado de Usuarios
     </a>
-    <a
-      class="btn btn-primary mt-4 mx-1"
-      href="admin/usuario/edit/{{ oUsuario.id }}"
-    >
+    <a class="btn btn-primary mt-4 mx-1" href="admin/usuario/edit/{{ oUsuario.id }}">
       <i class="bi bi-pencil"></i>
       Editar
     </a>
-    <a
-      class="btn btn-danger mt-4 mx-1"
-      href="admin/usuario/delete/{{ oUsuario.id }}"
-    >
+    <a class="btn btn-danger mt-4 mx-1" href="admin/usuario/delete/{{ oUsuario.id }}">
       <i class="bi bi-trash"></i>
       Borrar
     </a>

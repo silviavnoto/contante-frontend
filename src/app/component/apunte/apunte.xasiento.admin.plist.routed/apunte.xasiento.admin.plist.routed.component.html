@@ -3,7 +3,7 @@
     <div class="col text-center">
       <h2 class="my-2">
         <i class="bi bi-list"></i>
-        Lista de Apuntes del Asiento con id {{oAsiento?.id}}
+        Lista de Apuntes del Asiento con id {{oAsiento.id}} ({{oAsiento.descripcion| trim : 10}})
         <i class="bi bi-newspaper"></i>
       </h2>
       <a href="admin/apunte/create"
@@ -148,7 +148,7 @@
                 } @else {
                 <i class="bi bi-caret-up-fill"></i>} }
               </th>
-              <th class="bg-primary text-white">Asiento</th>
+              
               <th class="bg-primary text-white">Subcuenta</th>
               <th class="bg-primary text-white">Tipo de Apunte</th>
 
@@ -168,9 +168,6 @@
                 {{ apunte.momentstamp | date : "dd/MM/yyyy ..." }}
               </td>
               <td class="text-center">{{ apunte.orden }}</td>
-              <td class="text-start">
-                {{ apunte.asiento.descripcion | trim :10 }}({{ apunte.asiento.id }})
-              </td>
               <td class="text-start">
                 {{ apunte.subcuenta.descripcion | trim :10 }}({{ apunte.subcuenta.id }})
               </td>
